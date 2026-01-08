@@ -43,6 +43,7 @@ const getData = async () => {
     job: job.data.job,
     age: age.data.age
   };
+  
 };
 
 const handleMultiplePromises = async (promises = []) => {
