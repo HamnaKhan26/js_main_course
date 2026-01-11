@@ -6,6 +6,16 @@
 const countFrequency = (arr) => {
   // add your code here
   // returns an object with the frequency of each value in the array
+  const frequency = {};
+
+  for(let i =0; i < arr.length; i++) {
+    const value = arr[i];
+    if(frequency[value]){
+      frequency[value]++;
+    } else {
+      frequency[value] = 1;
+    }
+  }
 };
 
 /**
@@ -17,6 +27,14 @@ const countFrequency = (arr) => {
 const getDuplicates = (arr) => {
   // add your code here
   // returns an array of all the duplicate values in the array
+  const duplicates = [];
+  const frequency = countFrequency(arr);
+  for(const key in frequency) {
+    if(frequency[key] > 1) {
+      duplicates.push(Number(key));
+    }
+  }
+  return duplicates;
 };
 
 module.exports = {
