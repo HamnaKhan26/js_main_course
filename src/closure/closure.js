@@ -6,7 +6,19 @@
     myFunc() -> undefined
 */
 
-const once = (callback) => {};
+const once = (callback) => {
+  let called = false;
+  return () => {
+    if (!called) {
+      called = true;
+      return callback();
+    }
+  };
+};
+
+const myFunc = once(() => {console.log('yo')})
+console.log(myFunc());
+
 
 /* 
     Write a function that returns a function that take an initial number
@@ -18,7 +30,17 @@ const once = (callback) => {};
     add2(3) -> 5
 */
 
-const addFactory = (initialNum) => {};
+const addFactory = (initialNum) => {
+  return (newNum) => {
+    return initialNum + newNum;
+  }
+};
+
+const add2 = addFactory(2);
+
+console.log(add2(4));
+console.log(add2(7));
+console.log(add2(3));
 
 /* 
     Our person has some sensitive information exposed below
@@ -29,25 +51,33 @@ const addFactory = (initialNum) => {};
 */
 
 const personWithPrivateProperties = () => {
+  const accountBalance = -5;
+  const bankInfo = { name: "Bank of Venezuela", sensitiveId: "BV123" };
   return {
     age: 10,
     job: "Pizza Driver",
-    accountBalance: -5,
-    bankInfo: { name: "Bank of Venezuela", sensitiveId: "BV123" },
+
     updateBank: () => {
-      //your code here
+      return bankInfo;
     },
     getBankInfo: () => {
-      //your code here
+      return bankInfo;
     },
     getAccountBalance: () => {
-      //your code here
+      return accountBalance;
     },
     updateAccountBalance: () => {
-      //your code here
+      return accountBalance;
     },
   };
 };
+
+const person = personWithPrivateProperties();
+
+//console.log(person.bankInfo.sensitiveId);
+//console.log(person.accountBalance);
+console.log(person.getBankInfo());
+console.log(person.getAccountBalance());
 
 module.exports = {
   once,
