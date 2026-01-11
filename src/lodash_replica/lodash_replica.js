@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  * Returns a flattened array
  *
@@ -6,7 +8,10 @@
  */
 const myFlatMap = (arr) => {
     // your code here
+    return _.flattenDeep(arr);
 };
+
+console.log(myFlatMap([1, 2, [3, 4, 5, 6, [7, 8, 9, [10]]]]));
 
 /**
  * Returns an array combining the initial array with the other values
@@ -17,6 +22,7 @@ const myFlatMap = (arr) => {
  */
 const myConcat = (arr, ...values) => {
     // your code here
+    return arr.concat(...values);
 };
 
 /**
@@ -28,6 +34,7 @@ const myConcat = (arr, ...values) => {
  */
 const myReject = (arr, itemToReject) => {
     // your code here
+    return arr.filter((item) => item !== itemToReject);
 };
 
 module.exports = {
